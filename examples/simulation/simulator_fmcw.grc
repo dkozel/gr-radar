@@ -1,28 +1,25 @@
 options:
   parameters:
+    alias: ''
     author: ''
-    category: Custom
-    cmake_opt: ''
+    catch_exceptions: 'True'
     comment: ''
     copyright: ''
     description: ''
-    gen_cmake: 'On'
     gen_linking: dynamic
     generate_options: qt_gui
+    generator_class_name: PythonQtGuiGenerator
+    generator_module: gnuradio.grc.workflows.python_qt_gui
     hier_block_src_path: '.:'
     id: simulator_fmcw
     max_nouts: '0'
     output_language: python
-    placement: (0,0)
     qt_qss_theme: ''
     realtime_scheduling: ''
     run: 'True'
     run_command: '{python} -u {filename}'
-    run_options: prompt
-    sizing_mode: fixed
     thread_safe_setters: ''
     title: ''
-    window_size: 2000, 2000
   states:
     bus_sink: false
     bus_source: false
@@ -56,7 +53,7 @@ blocks:
     coordinate: [115, 80]
     rotation: 0
     state: enabled
-- name: max_output_buffer
+- name: m_max_output_buffer
   id: variable
   parameters:
     comment: ''
@@ -65,7 +62,19 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [754, 16]
+    coordinate: [760, 12.0]
+    rotation: 0
+    state: enabled
+- name: m_min_output_buffer
+  id: variable
+  parameters:
+    comment: ''
+    value: int((samp_up+samp_down+samp_cw)*2)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [616, 12.0]
     rotation: 0
     state: enabled
 - name: meas_duration
@@ -77,19 +86,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [741, 122]
-    rotation: 0
-    state: enabled
-- name: min_output_buffer
-  id: variable
-  parameters:
-    comment: ''
-    value: int((samp_up+samp_down+samp_cw)*2)
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [619, 14]
+    coordinate: [800, 92.0]
     rotation: 0
     state: enabled
 - name: protect_samp
@@ -99,7 +96,7 @@ blocks:
     gui_hint: ''
     label: ''
     min_len: '200'
-    orient: Qt.Horizontal
+    orient: QtCore.Qt.Horizontal
     rangeType: float
     start: '0'
     step: '1'
@@ -110,7 +107,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1007, 471]
+    coordinate: [968, 476.0]
     rotation: 0
     state: enabled
 - name: range_res
@@ -122,7 +119,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [555, 122]
+    coordinate: [616, 92.0]
     rotation: 0
     state: enabled
 - name: samp_cw
@@ -192,7 +189,7 @@ blocks:
     gui_hint: ''
     label: ''
     min_len: '200'
-    orient: Qt.Horizontal
+    orient: QtCore.Qt.Horizontal
     rangeType: float
     start: '-120'
     step: '1'
@@ -203,7 +200,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [875, 472]
+    coordinate: [832, 476.0]
     rotation: 0
     state: enabled
 - name: v_res
@@ -215,7 +212,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [648, 122]
+    coordinate: [704, 92.0]
     rotation: 0
     state: enabled
 - name: value_range
@@ -225,7 +222,7 @@ blocks:
     gui_hint: ''
     label: range
     min_len: '200'
-    orient: Qt.Horizontal
+    orient: QtCore.Qt.Horizontal
     rangeType: float
     start: '0'
     step: '1'
@@ -236,7 +233,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [259, 336]
+    coordinate: [288, 364.0]
     rotation: 0
     state: enabled
 - name: velocity
@@ -246,7 +243,7 @@ blocks:
     gui_hint: ''
     label: ''
     min_len: '200'
-    orient: Qt.Horizontal
+    orient: QtCore.Qt.Horizontal
     rangeType: float
     start: '0'
     step: '1'
@@ -257,7 +254,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [391, 334]
+    coordinate: [408, 364.0]
     rotation: 0
     state: enabled
 - name: analog_noise_source_x_0
@@ -268,7 +265,7 @@ blocks:
     amp: '0.1'
     comment: ''
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     noise_type: analog.GR_GAUSSIAN
     seed: '0'
     type: complex
@@ -276,7 +273,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [322, 88]
+    coordinate: [336, 92.0]
     rotation: 0
     state: enabled
 - name: blocks_add_xx_0
@@ -286,7 +283,7 @@ blocks:
     alias: ''
     comment: ''
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     num_inputs: '2'
     type: complex
     vlen: '1'
@@ -304,13 +301,13 @@ blocks:
     alias: ''
     comment: ''
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     vlen: '1'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [379, 513]
+    coordinate: [600, 512.0]
     rotation: 0
     state: enabled
 - name: blocks_tagged_stream_multiply_length_0
@@ -322,25 +319,27 @@ blocks:
     comment: ''
     lengthtagname: '"packet_len"'
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     type: complex
     vlen: '1'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [327, 691]
+    coordinate: [352, 688.0]
     rotation: 0
     state: enabled
-- name: blocks_throttle_0
-  id: blocks_throttle
+- name: blocks_throttle2_0
+  id: blocks_throttle2
   parameters:
     affinity: ''
     alias: ''
     comment: ''
     ignoretag: 'True'
+    limit: auto
+    maximum: '0.1'
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: '0'
     samples_per_second: samp_rate
     type: complex
     vlen: '1'
@@ -348,7 +347,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [74, 326]
+    coordinate: [88, 236.0]
     rotation: 0
     state: enabled
 - name: qtgui_sink_x_0
@@ -372,12 +371,12 @@ blocks:
     showports: 'False'
     showrf: 'False'
     type: complex
-    wintype: firdes.WIN_BLACKMAN_hARRIS
+    wintype: window.WIN_BLACKMAN_hARRIS
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [410, 1106]
+    coordinate: [488, 1084.0]
     rotation: 0
     state: disabled
 - name: qtgui_sink_x_0_0
@@ -401,12 +400,12 @@ blocks:
     showports: 'False'
     showrf: 'False'
     type: complex
-    wintype: firdes.WIN_BLACKMAN_hARRIS
+    wintype: window.WIN_BLACKMAN_hARRIS
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [400, 1220]
+    coordinate: [488, 1196.0]
     rotation: 0
     state: disabled
 - name: qtgui_sink_x_0_0_0
@@ -430,12 +429,12 @@ blocks:
     showports: 'False'
     showrf: 'False'
     type: complex
-    wintype: firdes.WIN_BLACKMAN_hARRIS
+    wintype: window.WIN_BLACKMAN_hARRIS
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [398, 1339]
+    coordinate: [488, 1308.0]
     rotation: 0
     state: disabled
 - name: radar_estimator_fmcw_0
@@ -456,7 +455,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [913, 1252]
+    coordinate: [960, 1148.0]
     rotation: 180
     state: enabled
 - name: radar_find_max_peak_c_0
@@ -477,7 +476,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [847, 689]
+    coordinate: [904, 764.0]
     rotation: 0
     state: enabled
 - name: radar_find_max_peak_c_0_0
@@ -498,7 +497,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [830, 887]
+    coordinate: [904, 892.0]
     rotation: 0
     state: enabled
 - name: radar_find_max_peak_c_0_0_0
@@ -519,7 +518,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [854, 1107]
+    coordinate: [904, 1020.0]
     rotation: 0
     state: enabled
 - name: radar_print_results_0
@@ -534,7 +533,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [688, 1289]
+    coordinate: [712, 1188.0]
     rotation: 180
     state: enabled
 - name: radar_signal_generator_fmcw_c_0
@@ -548,7 +547,7 @@ blocks:
     freq_sweep: sweep_freq
     len_key: '"packet_len"'
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     samp_cw: samp_cw
     samp_down: samp_down
     samp_rate: samp_rate
@@ -568,14 +567,14 @@ blocks:
     comment: ''
     len_key: '"packet_len"'
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     packet_num: '0'
-    packet_parts: (samp_cw/decim_fac,samp_up/decim_fac,samp_down/decim_fac)
+    packet_parts: '[int(x) for x in (samp_cw/decim_fac,samp_up/decim_fac,samp_down/decim_fac)]'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [111, 830]
+    coordinate: [184, 836.0]
     rotation: 0
     state: enabled
 - name: radar_split_cc_0_0
@@ -586,14 +585,14 @@ blocks:
     comment: ''
     len_key: '"packet_len"'
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     packet_num: '1'
-    packet_parts: (samp_cw/decim_fac,samp_up/decim_fac,samp_down/decim_fac)
+    packet_parts: '[int(x) for x in (samp_cw/decim_fac,samp_up/decim_fac,samp_down/decim_fac)]'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [108, 911]
+    coordinate: [184, 916.0]
     rotation: 0
     state: enabled
 - name: radar_split_cc_0_0_0
@@ -604,14 +603,14 @@ blocks:
     comment: ''
     len_key: '"packet_len"'
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     packet_num: '2'
-    packet_parts: (samp_cw/decim_fac,samp_up/decim_fac,samp_down/decim_fac)
+    packet_parts: '[int(x) for x in (samp_cw/decim_fac,samp_up/decim_fac,samp_down/decim_fac)]'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [108, 999]
+    coordinate: [184, 996.0]
     rotation: 0
     state: enabled
 - name: radar_static_target_simulator_cc_0
@@ -624,7 +623,7 @@ blocks:
     comment: ''
     len_key: '"packet_len"'
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     position_rx: '0'
     range: value_range
     rcs: 1e16
@@ -637,7 +636,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [290, 175]
+    coordinate: [288, 172.0]
     rotation: 0
     state: enabled
 - name: radar_ts_fft_cc_0
@@ -654,7 +653,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [411, 838]
+    coordinate: [480, 844.0]
     rotation: 0
     state: enabled
 - name: radar_ts_fft_cc_0_0
@@ -671,7 +670,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [413, 919]
+    coordinate: [480, 924.0]
     rotation: 0
     state: enabled
 - name: radar_ts_fft_cc_0_1
@@ -688,7 +687,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [414, 1007]
+    coordinate: [480, 1004.0]
     rotation: 0
     state: enabled
 - name: rational_resampler_xxx_0
@@ -708,7 +707,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [69, 685]
+    coordinate: [112, 660.0]
     rotation: 0
     state: enabled
 
@@ -719,13 +718,13 @@ connections:
 - [blocks_tagged_stream_multiply_length_0, '0', radar_split_cc_0, '0']
 - [blocks_tagged_stream_multiply_length_0, '0', radar_split_cc_0_0, '0']
 - [blocks_tagged_stream_multiply_length_0, '0', radar_split_cc_0_0_0, '0']
-- [blocks_throttle_0, '0', radar_static_target_simulator_cc_0, '0']
+- [blocks_throttle2_0, '0', radar_static_target_simulator_cc_0, '0']
 - [radar_estimator_fmcw_0, Msg out, radar_print_results_0, Msg in]
 - [radar_find_max_peak_c_0, Msg out, radar_estimator_fmcw_0, Msg in CW]
 - [radar_find_max_peak_c_0_0, Msg out, radar_estimator_fmcw_0, Msg in UP]
 - [radar_find_max_peak_c_0_0_0, Msg out, radar_estimator_fmcw_0, Msg in DOWN]
 - [radar_signal_generator_fmcw_c_0, '0', blocks_multiply_conjugate_cc_0, '0']
-- [radar_signal_generator_fmcw_c_0, '0', blocks_throttle_0, '0']
+- [radar_signal_generator_fmcw_c_0, '0', blocks_throttle2_0, '0']
 - [radar_split_cc_0, '0', qtgui_sink_x_0, '0']
 - [radar_split_cc_0, '0', radar_ts_fft_cc_0, '0']
 - [radar_split_cc_0_0, '0', qtgui_sink_x_0_0, '0']
@@ -740,3 +739,4 @@ connections:
 
 metadata:
   file_format: 1
+  grc_version: 3.10.12.0

@@ -95,7 +95,7 @@
     <key>variable</key>
     <param>
       <key>id</key>
-      <value>min_output_buffer</value>
+      <value>m_min_output_buffer</value>
     </param>
     <param>
       <key>_enabled</key>
@@ -235,7 +235,7 @@
     </param>
     <param>
       <key>minoutbuf</key>
-      <value>min_output_buffer</value>
+      <value>m_min_output_buffer</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -373,7 +373,7 @@
     </param>
     <param>
       <key>minoutbuf</key>
-      <value>min_output_buffer</value>
+      <value>m_min_output_buffer</value>
     </param>
     <param>
       <key>maxoutbuf</key>
@@ -1865,7 +1865,7 @@
     </param>
     <param>
       <key>minoutbuf</key>
-      <value>min_output_buffer</value>
+      <value>m_min_output_buffer</value>
     </param>
     <param>
       <key>maxoutbuf</key>

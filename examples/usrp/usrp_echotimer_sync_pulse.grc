@@ -44,7 +44,7 @@ blocks:
     coordinate: [283, 17]
     rotation: 0
     state: enabled
-- name: min_output_buffer
+- name: m_min_output_buffer
   id: variable
   parameters:
     comment: ''
@@ -388,7 +388,7 @@ blocks:
     comment: ''
     len_key: '"packet_len"'
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     packet_len: packet_len
     pulse_amplitude: '0.5'
     pulse_len: send_samp
@@ -419,7 +419,7 @@ blocks:
     lo_offset_rx: '0'
     lo_offset_tx: '0'
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     num_delay_samps: int(num_delay_samp)
     samp_rate: samp_rate
     time_source_rx: '''mimo'''

@@ -104,7 +104,7 @@ blocks:
     coordinate: [336, 149]
     rotation: 0
     state: enabled
-- name: min_output_buffer
+- name: m_min_output_buffer
   id: variable
   parameters:
     comment: ''
@@ -247,7 +247,7 @@ blocks:
     amp: '0.5'
     comment: ''
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     noise_type: analog.GR_GAUSSIAN
     seed: '0'
     type: complex
@@ -265,7 +265,7 @@ blocks:
     alias: ''
     comment: ''
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     num_inputs: '2'
     type: complex
     vlen: '1'
@@ -283,7 +283,7 @@ blocks:
     alias: ''
     comment: ''
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     vlen: '1'
   states:
     bus_sink: false
@@ -299,7 +299,7 @@ blocks:
     alias: ''
     comment: ''
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     vlen: '1'
   states:
     bus_sink: false
@@ -317,7 +317,7 @@ blocks:
     comment: ''
     lengthtagname: '"packet_len"'
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     type: complex
     vlen: '1'
   states:
@@ -336,7 +336,7 @@ blocks:
     comment: ''
     lengthtagname: '"packet_len"'
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     type: complex
     vlen: '1'
   states:
@@ -354,7 +354,7 @@ blocks:
     comment: ''
     ignoretag: 'True'
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     samples_per_second: samp_rate
     type: complex
     vlen: '1'
@@ -551,7 +551,7 @@ blocks:
     freq_low: -delta_freq/2
     len_key: '"packet_len"'
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     samp_per_freq: samp_per_freq
     samp_rate: samp_rate
   states:
@@ -569,7 +569,7 @@ blocks:
     comment: ''
     len_key: '"packet_len"'
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     samp_discard: samp_discard
     samp_per_freq: samp_per_freq
   states:
@@ -589,7 +589,7 @@ blocks:
     comment: ''
     len_key: '"packet_len"'
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     position_rx: '0'
     range: range_value
     rcs: 1e16

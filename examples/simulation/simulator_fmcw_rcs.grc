@@ -80,7 +80,7 @@ blocks:
     coordinate: [741, 122]
     rotation: 0
     state: enabled
-- name: min_output_buffer
+- name: m_min_output_buffer
   id: variable
   parameters:
     comment: ''
@@ -289,7 +289,7 @@ blocks:
     amp: 10e-9
     comment: ''
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     noise_type: analog.GR_GAUSSIAN
     seed: '0'
     type: complex
@@ -307,7 +307,7 @@ blocks:
     alias: ''
     comment: ''
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     num_inputs: '2'
     type: complex
     vlen: '1'
@@ -325,7 +325,7 @@ blocks:
     alias: ''
     comment: ''
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     vlen: '1'
   states:
     bus_sink: false
@@ -397,7 +397,7 @@ blocks:
     comment: ''
     lengthtagname: '"packet_len"'
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     type: complex
     vlen: '1'
   states:
@@ -415,7 +415,7 @@ blocks:
     comment: ''
     ignoretag: 'True'
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     samples_per_second: samp_rate
     type: complex
     vlen: '1'
@@ -646,7 +646,7 @@ blocks:
     freq_sweep: sweep_freq
     len_key: '"packet_len"'
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     samp_cw: samp_cw
     samp_down: samp_down
     samp_rate: samp_rate
@@ -666,7 +666,7 @@ blocks:
     comment: ''
     len_key: '"packet_len"'
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     packet_num: '0'
     packet_parts: (samp_cw/decim_fac,samp_up/decim_fac,samp_down/decim_fac)
   states:
@@ -684,7 +684,7 @@ blocks:
     comment: ''
     len_key: '"packet_len"'
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     packet_num: '1'
     packet_parts: (samp_cw/decim_fac,samp_up/decim_fac,samp_down/decim_fac)
   states:
@@ -702,7 +702,7 @@ blocks:
     comment: ''
     len_key: '"packet_len"'
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     packet_num: '2'
     packet_parts: (samp_cw/decim_fac,samp_up/decim_fac,samp_down/decim_fac)
   states:
@@ -722,7 +722,7 @@ blocks:
     comment: ''
     len_key: '"packet_len"'
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     position_rx: '0'
     range: value_range
     rcs: rcs

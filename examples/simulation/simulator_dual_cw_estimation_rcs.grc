@@ -92,7 +92,7 @@ blocks:
     coordinate: [628, 75]
     rotation: 0
     state: enabled
-- name: min_output_buffer
+- name: m_min_output_buffer
   id: variable
   parameters:
     comment: ''
@@ -235,7 +235,7 @@ blocks:
     amp: 1e-6
     comment: ''
     maxoutbuf: max_output_buffer
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     noise_type: analog.GR_GAUSSIAN
     seed: '0'
     type: complex
@@ -253,7 +253,7 @@ blocks:
     alias: ''
     comment: ''
     maxoutbuf: max_output_buffer
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     num_inputs: '2'
     type: complex
     vlen: '1'
@@ -271,7 +271,7 @@ blocks:
     alias: ''
     comment: ''
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     num_inputs: '2'
     type: complex
     vlen: '1'
@@ -289,7 +289,7 @@ blocks:
     alias: ''
     comment: ''
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     vlen: '1'
   states:
     bus_sink: false
@@ -305,7 +305,7 @@ blocks:
     alias: ''
     comment: ''
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     vlen: '1'
   states:
     bus_sink: false
@@ -321,7 +321,7 @@ blocks:
     alias: ''
     comment: ''
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     vlen: '1'
   states:
     bus_sink: false
@@ -338,7 +338,7 @@ blocks:
     comment: ''
     const: 1.0/(packet_len/decim_fac)
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     type: complex
     vlen: '1'
   states:
@@ -356,7 +356,7 @@ blocks:
     comment: ''
     const: 1.0/(packet_len/decim_fac)
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     type: complex
     vlen: '1'
   states:
@@ -375,7 +375,7 @@ blocks:
     comment: ''
     lengthtagname: '"packet_len"'
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     type: complex
     vlen: '1'
   states:
@@ -394,7 +394,7 @@ blocks:
     comment: ''
     lengthtagname: '"packet_len"'
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     type: complex
     vlen: '1'
   states:
@@ -412,7 +412,7 @@ blocks:
     comment: ''
     ignoretag: 'True'
     maxoutbuf: max_output_buffer
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     samples_per_second: samp_rate
     type: complex
     vlen: '1'
@@ -431,7 +431,7 @@ blocks:
     comment: ''
     ignoretag: 'True'
     maxoutbuf: max_output_buffer
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     samples_per_second: samp_rate
     type: complex
     vlen: '1'
@@ -609,7 +609,7 @@ blocks:
     frequency: freq[0]
     len_key: '"packet_len"'
     maxoutbuf: max_output_buffer
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     packet_len: packet_len
     samp_rate: samp_rate
   states:
@@ -629,7 +629,7 @@ blocks:
     frequency: freq[1]
     len_key: '"packet_len"'
     maxoutbuf: max_output_buffer
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     packet_len: packet_len
     samp_rate: samp_rate
   states:
@@ -649,7 +649,7 @@ blocks:
     comment: ''
     len_key: '"packet_len"'
     maxoutbuf: max_output_buffer
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     position_rx: '0'
     range: value_range
     rcs: rcs
@@ -673,7 +673,7 @@ blocks:
     comment: ''
     len_key: ' "packet_len"'
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     packet_len: packet_len//decim_fac
   states:
     bus_sink: false
@@ -690,7 +690,7 @@ blocks:
     comment: ''
     len_key: ' "packet_len"'
     maxoutbuf: '0'
-    minoutbuf: min_output_buffer
+    minoutbuf: m_min_output_buffer
     packet_len: packet_len//decim_fac
   states:
     bus_sink: false
