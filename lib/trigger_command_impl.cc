@@ -106,6 +106,7 @@ void trigger_command_impl::handle_msg(pmt::pmt_t msg)
     // Execute command if values are correct
     if (execute_command) {
         int sys_return = std::system(d_command.c_str());
+        (void) sys_return; // value is unused, avoid compiler warning
     }
 }
 

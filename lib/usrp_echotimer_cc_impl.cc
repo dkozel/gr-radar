@@ -250,7 +250,6 @@ void usrp_echotimer_cc_impl::send()
         d_time_now_tx + uhd::time_spec_t(d_wait_tx); // Timespec needed?
 
     // Send input buffer
-    size_t num_acc_samps = 0; // Number of accumulated samples
     size_t num_tx_samps, total_num_samps;
     total_num_samps = d_noutput_items_send;
     // Data to USRP

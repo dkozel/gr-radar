@@ -57,15 +57,15 @@ signal_generator_fmcw_c_impl::signal_generator_fmcw_c_impl(const int samp_rate,
       d_samp_up(samp_up),
       d_samp_down(samp_down),
       d_samp_cw(samp_cw),
+      d_packet_len(samp_up + samp_down + samp_cw),
       d_freq_cw(freq_cw),
       d_freq_sweep(freq_sweep),
       d_amplitude(amplitude),
-      d_packet_len(samp_up + samp_down + samp_cw),
       d_key_len(pmt::string_to_symbol(len_key)),
       d_value_len(pmt::from_long(d_packet_len)),
       d_srcid(pmt::string_to_symbol("sig_gen_fmcw")),
-      d_wv_counter(0),
-      d_waveform(d_packet_len, freq_cw)
+      d_waveform(d_packet_len, freq_cw),
+      d_wv_counter(0)
 {
     // Setup waveform vector: Contains cw, up-chirp, down-chirp. CW is
     // already set above. Note this vector contains the phase increment of
