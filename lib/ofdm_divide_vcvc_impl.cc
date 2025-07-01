@@ -57,7 +57,7 @@ ofdm_divide_vcvc_impl::ofdm_divide_vcvc_impl(int vlen_in,
     d_num_sync_words = num_sync_words;
 
     // Shift discarded carriers
-    for (int k = 0; k < discarded_carriers.size(); k++) {
+    for (size_t k = 0; k < discarded_carriers.size(); k++) {
         d_discarded_carriers[k] = discarded_carriers[k] + vlen_in / 2;
     }
 
@@ -98,7 +98,7 @@ int ofdm_divide_vcvc_impl::work(int noutput_items,
     // If actual vector is a sync words (given with num_sync_words) do not apply discarded
     // carriers rule
 
-    int next_discarded_element = 0; // set first discarded element on first vector item
+    size_t next_discarded_element = 0; // set first discarded element on first vector item
     if (d_discarded_carriers.size() ==
         0) { // set first discarded element on first vector item
         d_discarded_carriers.resize(1);

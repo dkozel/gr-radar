@@ -81,7 +81,7 @@ void estimator_ofdm_impl::handle_msg(pmt::pmt_t msg)
 {
     // Read msg from peak detector
     pmt::pmt_t msg_part;
-    for (int k = 0; k < pmt::length(msg); k++) {
+    for (size_t k = 0; k < pmt::length(msg); k++) {
         msg_part = pmt::nth(k, msg);
         if (pmt::symbol_to_string(pmt::nth(0, msg_part)) == "axis_x") {
             d_paxis_x = pmt::nth(1, msg_part);
@@ -103,10 +103,10 @@ void estimator_ofdm_impl::handle_msg(pmt::pmt_t msg)
     val_y_hold = d_val_y;
     if (d_merge_consecutive) {
         d_val_power = pmt::f32vector_elements(d_ppower);
-        for (int k = 0; k < d_val_x.size();
+        for (size_t k = 0; k < d_val_x.size();
              k++) { // Go through points and check bins in range one (also diagonal!) if
                     // the power is greater then the CUT
-            for (int l = 0; l < d_val_x.size(); l++) {
+            for (size_t l = 0; l < d_val_x.size(); l++) {
                 if (std::abs(d_val_x[k] - d_val_x[l]) <= 1 &&
                     std::abs(d_val_y[k] - d_val_y[l]) <= 1 &&
                     d_val_power[k] < d_val_power[l]) {
@@ -117,7 +117,7 @@ void estimator_ofdm_impl::handle_msg(pmt::pmt_t msg)
         }
         d_val_x.clear();
         d_val_y.clear();
-        for (int k = 0; k < val_x_hold.size(); k++) {
+        for (size_t k = 0; k < val_x_hold.size(); k++) {
             if (val_x_hold[k] != -1 && val_y_hold[k] != -1) {
                 d_val_x.push_back(val_x_hold[k]);
                 d_val_y.push_back(val_y_hold[k]);
@@ -130,7 +130,7 @@ void estimator_ofdm_impl::handle_msg(pmt::pmt_t msg)
     // 2 values given represents min and max with linear progression in between
     d_map_x.clear();
     d_map_y.clear();
-    for (int k = 0; k < d_val_x.size(); k++) { // x axis
+    for (size_t k = 0; k < d_val_x.size(); k++) { // x axis
         if (d_axis_x.size() == 2) {
             d_map_x.push_back(d_axis_x[0] +
                               d_val_x[k] / d_len_x * (d_axis_x[1] - d_axis_x[0]));
@@ -146,7 +146,7 @@ void estimator_ofdm_impl::handle_msg(pmt::pmt_t msg)
         }
     }
 
-    for (int k = 0; k < d_val_y.size(); k++) { // y axis
+    for (size_t k = 0; k < d_val_y.size(); k++) { // y axis
         if (d_axis_y.size() == 2) {
             d_map_y.push_back(d_axis_y[0] +
                               d_val_y[k] / d_len_y * (d_axis_y[1] - d_axis_y[0]));

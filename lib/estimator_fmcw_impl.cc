@@ -137,7 +137,7 @@ void estimator_fmcw_impl::estimate()
     pmt::pmt_t msg_part;
     pmt::pmt_t power;
 
-    for (int k = 0; k < pmt::length(d_msg_cw); k++) { // search freq CW
+    for (size_t k = 0; k < pmt::length(d_msg_cw); k++) { // search freq CW
         msg_part = pmt::nth(k, d_msg_cw);
         if (pmt::symbol_to_string(pmt::nth(0, msg_part)) == "frequency") {
             freq_cw = pmt::f32vector_elements(pmt::nth(1, msg_part));
@@ -148,14 +148,14 @@ void estimator_fmcw_impl::estimate()
         }
     }
 
-    for (int k = 0; k < pmt::length(d_msg_up); k++) { // search freq UP
+    for (size_t k = 0; k < pmt::length(d_msg_up); k++) { // search freq UP
         msg_part = pmt::nth(k, d_msg_up);
         if (pmt::symbol_to_string(pmt::nth(0, msg_part)) == "frequency") {
             freq_up = pmt::f32vector_elements(pmt::nth(1, msg_part));
         }
     }
 
-    for (int k = 0; k < pmt::length(d_msg_down); k++) { // search freq DOWN
+    for (size_t k = 0; k < pmt::length(d_msg_down); k++) { // search freq DOWN
         msg_part = pmt::nth(k, d_msg_down);
         if (pmt::symbol_to_string(pmt::nth(0, msg_part)) == "frequency") {
             freq_down = pmt::f32vector_elements(pmt::nth(1, msg_part));
@@ -164,7 +164,7 @@ void estimator_fmcw_impl::estimate()
 
     // Get velocities out of CW frequencies
     std::vector<float> velocity_cw;
-    for (int k = 0; k < freq_cw.size(); k++) {
+    for (size_t k = 0; k < freq_cw.size(); k++) {
         velocity_cw.push_back(-c_light / 2 / d_center_freq *
                               freq_cw[k]); // with minus! for same sign as all_velocities
     }
@@ -172,8 +172,8 @@ void estimator_fmcw_impl::estimate()
     // Get all possible range/velocity pairs
     std::vector<float> all_ranges, all_velocities;
     float v1, v2, r;
-    for (int m = 0; m < freq_up.size(); m++) {
-        for (int n = 0; n < freq_down.size(); n++) {
+    for (size_t m = 0; m < freq_up.size(); m++) {
+        for (size_t n = 0; n < freq_down.size(); n++) {
             r = (freq_up[m] - freq_down[n]) /
                 (d_const_up + d_const_down); // range from up- and down-chirp
             all_ranges.push_back(r);
@@ -189,11 +189,11 @@ void estimator_fmcw_impl::estimate()
     std::vector<float> velocity, range;
     int min_vel_index;
     float min_vel;
-    for (int k = 0; k < velocity_cw.size(); k++) {
+    for (size_t k = 0; k < velocity_cw.size(); k++) {
         min_vel = 1e20;
         min_vel_index = -1;
 
-        for (int l = 0; l < all_velocities.size(); l++) {
+        for (size_t l = 0; l < all_velocities.size(); l++) {
             if (min_vel > std::abs(velocity_cw[k] - all_velocities[l])) {
                 min_vel = std::abs(velocity_cw[k] - all_velocities[l]);
                 min_vel_index = l;

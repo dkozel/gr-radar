@@ -78,18 +78,18 @@ void trigger_command_impl::handle_msg(pmt::pmt_t msg)
     // Go through msg parts and check symbols
     pmt::pmt_t msg_part_symbol, msg_part_value;
     bool execute_command = true;
-    for (int k = 0; k < pmt::length(msg); k++) {
+    for (size_t k = 0; k < pmt::length(msg); k++) {
         msg_part_symbol = pmt::nth(0, pmt::nth(k, msg));
         msg_part_value = pmt::nth(1, pmt::nth(k, msg));
         // Go through given symbols
-        for (int p = 0; p < d_identifiers.size(); p++) {
+        for (size_t p = 0; p < d_identifiers.size(); p++) {
             if (pmt::symbol_to_string(msg_part_symbol) == d_identifiers[p]) {
                 // Go through input if values are a f32vector, else set executing command
                 // on false
                 if (pmt::is_f32vector(msg_part_value)) {
                     // Go through values and check boundries
                     std::vector<float> values = pmt::f32vector_elements(msg_part_value);
-                    for (int m = 0; m < values.size(); m++) {
+                    for (size_t m = 0; m < values.size(); m++) {
                         if (values[m] < d_vals_min[p] || values[m] > d_vals_max[p]) {
                             execute_command = false;
                         }

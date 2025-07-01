@@ -131,7 +131,7 @@ void tracking_singletarget_impl::handle_msg(pmt::pmt_t msg)
     // FIXME: error handling for false input? e.g. multi target input (throw warning)
     std::vector<float> vec_pmt;
     d_is_empty = false;                  // check if range or velocity is empty
-    for (int k = 0; k < size_msg; k++) { // FIXME: errorhandling for wrong input?
+    for (size_t k = 0; k < size_msg; k++) { // FIXME: errorhandling for wrong input?
         msg_part = pmt::nth(k, msg);
         if (pmt::symbol_to_string(pmt::nth(0, msg_part)) == "range") {
             vec_pmt = (pmt::f32vector_elements(pmt::nth(1, msg_part)));
@@ -170,7 +170,7 @@ void tracking_singletarget_impl::handle_msg(pmt::pmt_t msg)
         pmt::pmt_t msg_out;
         if (store_msg.size() != 0) { // if msgs are stored add them
             msg_out = pmt::list1(store_msg[0]);
-            for (int k = 1; k < store_msg.size(); k++) {
+            for (size_t k = 1; k < store_msg.size(); k++) {
                 msg_out = pmt::list_add(msg_out, store_msg[k]);
             }
         }

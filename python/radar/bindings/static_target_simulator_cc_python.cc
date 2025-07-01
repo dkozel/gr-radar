@@ -1,5 +1,5 @@
 /*
- * Copyright 2022 Free Software Foundation, Inc.
+ * Copyright 2025 Free Software Foundation, Inc.
  *
  * This file is part of GNU Radio
  *
@@ -14,7 +14,7 @@
 /* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
 /* BINDTOOL_USE_PYGCCXML(0)                                                        */
 /* BINDTOOL_HEADER_FILE(static_target_simulator_cc.h) */
-/* BINDTOOL_HEADER_FILE_HASH(f35e6617e29a8e533370a13e678d434e)                     */
+/* BINDTOOL_HEADER_FILE_HASH(1be5bb386996053d87f8723606d62da8)                     */
 /***********************************************************************************/
 
 #include <pybind11/complex.h>
@@ -30,7 +30,7 @@ namespace py = pybind11;
 void bind_static_target_simulator_cc(py::module& m)
 {
 
-    using static_target_simulator_cc = ::gr::radar::static_target_simulator_cc;
+    using static_target_simulator_cc = gr::radar::static_target_simulator_cc;
 
 
     py::class_<static_target_simulator_cc,

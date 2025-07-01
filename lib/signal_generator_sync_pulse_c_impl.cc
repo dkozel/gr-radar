@@ -65,8 +65,8 @@ signal_generator_sync_pulse_c_impl::signal_generator_sync_pulse_c_impl(
     // Use alternating pulse_pause (zeros) and pulse_len (amplitude), fill with zeros at
     // the end up to packet_len
     d_out_buffer.resize(packet_len);
-    int pulse_send = 0;
-    int pulse_wait = 0;
+    size_t pulse_send = 0;
+    size_t pulse_wait = 0;
     int k = 0;
     while (pulse_wait < pulse_pause.size() || pulse_send < pulse_len.size()) {
         if (pulse_wait < pulse_pause.size()) { // Setup wait samples

@@ -77,7 +77,7 @@ int split_fsk_cc_impl::work(int noutput_items,
 
     // get all tags, reset offset and push to outputs
     get_tags_in_range(d_tags, 0, nitems_read(0), nitems_read(0) + 1);
-    for (int k = 0; k < d_tags.size(); k++) {
+    for (size_t k = 0; k < d_tags.size(); k++) {
         add_item_tag(
             0, nitems_written(0), d_tags[k].key, d_tags[k].value, d_tags[k].srcid);
         add_item_tag(

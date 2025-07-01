@@ -90,12 +90,12 @@ void scatter_plot::resizeEvent(QResizeEvent* event)
 void scatter_plot::refresh()
 {
     // Clear plot from old markers
-    for (int k = 0; k < d_marker.size(); k++)
+    for (size_t k = 0; k < d_marker.size(); k++)
         d_marker[k]->detach();
 
     if (!(*d_xy_read)) {
         // Set new marker
-        for (int k = 0; k < d_x->size();
+        for (size_t k = 0; k < d_x->size();
              k++) { // len(range)==len(velocity), same size x and y!
             if (k < d_marker.size()) {
                 d_marker[k]->setValue(QPointF((*d_x)[k], (*d_y)[k]));

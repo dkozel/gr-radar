@@ -94,13 +94,13 @@ void time_plot::refresh()
 
     // Detach old markers
     int marker_index = d_refresh_counter % d_marker.size();
-    for (int k = 0; k < d_marker[marker_index].size(); k++) {
+    for (size_t k = 0; k < d_marker[marker_index].size(); k++) {
         d_marker[marker_index][k]->detach();
     }
 
     if (!(*d_y_read)) {
         // Set new marker
-        for (int k = 0; k < d_y->size(); k++) {
+        for (size_t k = 0; k < d_y->size(); k++) {
             if (k < d_marker[marker_index].size()) {
                 d_marker[marker_index][k]->setValue(
                     QPointF(d_refresh_counter * float(d_interval) / 1000.0, (*d_y)[k]));

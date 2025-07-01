@@ -62,7 +62,7 @@ void estimator_cw_impl::handle_msg(pmt::pmt_t msg)
 {
     // Read msg from peak detector
     pmt::pmt_t msg_part;
-    for (int k = 0; k < pmt::length(msg); k++) {
+    for (size_t k = 0; k < pmt::length(msg); k++) {
         msg_part = pmt::nth(k, msg);
         if (pmt::symbol_to_string(pmt::nth(0, msg_part)) == "frequency") {
             d_pfreq = pmt::nth(1, msg_part);
@@ -75,7 +75,7 @@ void estimator_cw_impl::handle_msg(pmt::pmt_t msg)
 
     // Calc velocities and write to vector
     d_vel.clear();
-    for (int k = 0; k < d_freq.size(); k++) {
+    for (size_t k = 0; k < d_freq.size(); k++) {
         d_vel.push_back(d_freq[k] * c_light / 2 /
                         d_center_freq); // calc with doppler formula
     }

@@ -105,7 +105,7 @@ void spectrogram_plot::refresh()
     } else
         throw std::runtime_error("data buffer has size zero");
 
-    for (int k = 0; k < d_buffer->size(); k++) {
+    for (size_t k = 0; k < d_buffer->size(); k++) {
         d_plot_data[k] = (*d_buffer)[k];
         if (d_plot_data[k] < minimum)
             minimum = d_plot_data[k];

@@ -136,7 +136,7 @@ void static_target_simulator_cc_impl::setup_targets(std::vector<float> range,
     d_timeshift_azimuth.resize(d_position_rx.size());
     d_filt_time.resize(d_num_targets);
     d_filt_time_azimuth.resize(d_position_rx.size());
-    for (int l = 0; l < d_position_rx.size(); l++) {
+    for (size_t l = 0; l < d_position_rx.size(); l++) {
         d_filt_time_azimuth[l].resize(d_num_targets);
         d_timeshift_azimuth[l].resize(d_num_targets);
         for (int k = 0; k < d_num_targets; k++) {
@@ -244,7 +244,7 @@ int static_target_simulator_cc_impl::work(int noutput_items,
                                           // after fft->ifft
             }
 
-            for (int l = 0; l < d_position_rx.size();
+            for (size_t l = 0; l < d_position_rx.size();
                  l++) { // Do time shift filter with azimuth and position, there are two
                         // time shift filters to avoid problems with significant digits of
                         // float
@@ -281,7 +281,7 @@ int static_target_simulator_cc_impl::work(int noutput_items,
     }
 
     // Go through RXs
-    for (int l = 0; l < d_position_rx.size(); l++) {
+    for (size_t l = 0; l < d_position_rx.size(); l++) {
         // Setup pointer on output buffer
         out = (gr_complex*)output_items[l];
 

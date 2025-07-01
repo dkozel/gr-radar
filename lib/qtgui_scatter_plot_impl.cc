@@ -87,7 +87,7 @@ void qtgui_scatter_plot_impl::handle_msg(pmt::pmt_t msg)
     // and get data
     item_found_x = false;
     item_found_y = false;
-    for (int k = 0; k < size_msg; k++) {
+    for (size_t k = 0; k < size_msg; k++) {
         msg_part = pmt::nth(k, msg);
         if (pmt::symbol_to_string(pmt::nth(0, msg_part)) == d_label_x.c_str()) {
             d_x = pmt::f32vector_elements(pmt::nth(1, msg_part));

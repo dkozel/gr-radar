@@ -70,7 +70,7 @@ void msg_gate_impl::handle_msg(pmt::pmt_t msg)
 
     // Push back float32 vectors in msg to separate vectors (only valid type for data) //
     // FIXME: allow other data types?
-    for (int k = 0; k < msg_size; k++) {
+    for (size_t k = 0; k < msg_size; k++) {
         if (pmt::is_f32vector(pmt::nth(1, pmt::nth(k, msg)))) {
             msg_parts_f32_key.push_back(
                 pmt::nth(0, pmt::nth(k, msg))); // save key (pmt symbol)
@@ -86,13 +86,12 @@ void msg_gate_impl::handle_msg(pmt::pmt_t msg)
         // Filter f32 vectors with string keys and save index of items out of boundries
         size_t key_size;
         key_size = d_keys.size();
-        size_t counter, size_vec;
-        for (int k = 0; k < msg_parts_f32_key.size(); k++) { // go through msg_parts keys
-            for (int p = 0; p < key_size; p++) {             // go through string keys
+        for (size_t k = 0; k < msg_parts_f32_key.size(); k++) { // go through msg_parts keys
+            for (size_t p = 0; p < key_size; p++) {             // go through string keys
                 if (d_keys[p] ==
                     pmt::symbol_to_string(
                         msg_parts_f32_key[k])) { // if matching key is found apply filter
-                    for (int q = 0; q < msg_parts_f32_val[k].size();
+                    for (size_t q = 0; q < msg_parts_f32_val[k].size();
                          q++) { // look for items out of boundries and store index
                         if (msg_parts_f32_val[k][q] < d_val_min[p] ||
                             msg_parts_f32_val[k][q] > d_val_max[p]) {
@@ -112,12 +111,12 @@ void msg_gate_impl::handle_msg(pmt::pmt_t msg)
         std::vector<std::vector<float>> f32_hold;
         f32_hold.resize(msg_parts_f32_val.size());
 
-        for (int p = 0; p < msg_parts_f32_val[0].size(); p++) {
+        for (size_t p = 0; p < msg_parts_f32_val[0].size(); p++) {
             if (index_remove_items.end() ==
                 std::find(index_remove_items.begin(),
                           index_remove_items.end(),
                           p)) { // if index is not in vector for removed items
-                for (int k = 0; k < msg_parts_f32_val.size(); k++) {
+                for (size_t k = 0; k < msg_parts_f32_val.size(); k++) {
                     f32_hold[k].push_back(msg_parts_f32_val[k][p]);
                 }
             }
@@ -133,26 +132,26 @@ void msg_gate_impl::handle_msg(pmt::pmt_t msg)
             // Repack rest pmts (not f32)
             if (msg_parts_rest.size() != 0) {
                 msg_out_rest = pmt::list1(msg_parts_rest[0]);
-                for (int k = 1; k < msg_parts_rest.size(); k++) {
+                for (size_t k = 1; k < msg_parts_rest.size(); k++) {
                     msg_out_rest = pmt::list_add(msg_out_rest, msg_parts_rest[k]);
                 }
             }
 
             // Repack f32 pmts
             f32_hold_pmt.resize(f32_hold.size());
-            for (int k = 0; k < f32_hold.size(); k++) {
+            for (size_t k = 0; k < f32_hold.size(); k++) {
                 f32_hold_pmt[k] =
                     list2(msg_parts_f32_key[k],
                           pmt::init_f32vector(f32_hold[k].size(), f32_hold[k]));
             }
             if (is_msg_rest) {
                 msg_out = msg_out_rest;
-                for (int k = 0; k < f32_hold_pmt.size(); k++) {
+                for (size_t k = 0; k < f32_hold_pmt.size(); k++) {
                     msg_out = list_add(msg_out, f32_hold_pmt[k]);
                 }
             } else {
                 msg_out = list1(f32_hold_pmt[0]);
-                for (int k = 1; k < f32_hold_pmt.size(); k++) {
+                for (size_t k = 1; k < f32_hold_pmt.size(); k++) {
                     msg_out = pmt::list_add(msg_out, f32_hold_pmt[k]);
                 }
             }

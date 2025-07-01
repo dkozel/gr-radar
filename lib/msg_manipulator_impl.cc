@@ -72,12 +72,12 @@ void msg_manipulator_impl::handle_msg(pmt::pmt_t msg)
     std::vector<float> value_new;
     std::vector<pmt::pmt_t> store_msg;
     int index;
-    for (int k = 0; k < pmt::length(msg); k++) {
+    for (size_t k = 0; k < pmt::length(msg); k++) {
         symbol_found = false;
         msg_part_symbol = pmt::nth(0, pmt::nth(k, msg));
         msg_part_value = pmt::nth(1, pmt::nth(k, msg));
         // Go through given symbols
-        for (int p = 0; p < d_symbols.size(); p++) {
+        for (size_t p = 0; p < d_symbols.size(); p++) {
             if (pmt::symbol_to_string(msg_part_symbol) == d_symbols[p]) {
                 index = p;
                 symbol_found = true;
@@ -89,7 +89,7 @@ void msg_manipulator_impl::handle_msg(pmt::pmt_t msg)
                 msg_part_value)) { // use const_add and const_mult if symbol found and
                                    // value is f32 vector, then store new msg
             value_new = pmt::f32vector_elements(msg_part_value);
-            for (int m = 0; m < value_new.size(); m++) { // manipulate vector
+            for (size_t m = 0; m < value_new.size(); m++) { // manipulate vector
                 value_new[m] = (value_new[m] + d_const_add[index]) * d_const_mult[index];
             }
             store_msg.push_back(pmt::list2(
@@ -104,7 +104,7 @@ void msg_manipulator_impl::handle_msg(pmt::pmt_t msg)
     if (store_msg.size() == 0)
         throw std::runtime_error("Store msg vector has unvalid length (size=0)");
     msg_out = pmt::list1(store_msg[0]);          // init pmt list
-    for (int k = 1; k < store_msg.size(); k++) { // add pmt list
+    for (size_t k = 1; k < store_msg.size(); k++) { // add pmt list
         msg_out = pmt::list_add(msg_out, store_msg[k]);
     }
 

@@ -66,7 +66,7 @@ void print_results_impl::handle_msg(pmt::pmt_t msg)
         d_file << "// Print results" << std::endl;
     // Get size of pmt list
     d_size_msg = pmt::length(msg);
-    for (int k = 0; k < d_size_msg; k++) {
+    for (size_t k = 0; k < d_size_msg; k++) {
         d_msg_part = pmt::nth(k, msg);
         // Print identifier (which information)
         std::cout << pmt::symbol_to_string(pmt::nth(0, d_msg_part)) << ": ";
@@ -75,7 +75,7 @@ void print_results_impl::handle_msg(pmt::pmt_t msg)
         // Print information, every datatype needs an if-statement!
         if (pmt::is_f32vector(pmt::nth(1, d_msg_part))) {
             d_size_part = pmt::length(pmt::nth(1, d_msg_part));
-            for (int l = 0; l < d_size_part; l++) {
+            for (size_t l = 0; l < d_size_part; l++) {
                 std::cout << pmt::f32vector_elements(pmt::nth(1, d_msg_part),
                                                      d_size_part)[l]
                           << " ";

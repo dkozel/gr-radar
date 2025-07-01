@@ -140,7 +140,7 @@ void estimator_rcs_impl::set_corr_factor(float val) { d_corr_factor = val; }
 float estimator_rcs_impl::calculate_vector_mean(boost::circular_buffer<float>* rcs_vals)
 {
     float sum_of_elems = 0;
-    for (int k = 0; k < rcs_vals->size(); k++) {
+    for (size_t k = 0; k < rcs_vals->size(); k++) {
         sum_of_elems += (*rcs_vals)[k];
     }
     return sum_of_elems / rcs_vals->size();
@@ -178,7 +178,7 @@ void estimator_rcs_impl::handle_msg(pmt::pmt_t msg)
     pmt::pmt_t msg_part;
     bool found_range = false;
     bool found_power = false;
-    for (int k = 0; k < pmt::length(msg); k++) {
+    for (size_t k = 0; k < pmt::length(msg); k++) {
         msg_part = pmt::nth(k, msg);
         if (pmt::symbol_to_string(pmt::nth(0, msg_part)) == "range") {
             d_prange = pmt::nth(1, msg_part);
@@ -217,7 +217,7 @@ void estimator_rcs_impl::handle_msg(pmt::pmt_t msg)
         d_loop_counter++;
     }
 
-    for (int k = 0; k < d_range.size(); k++) {
+    for (size_t k = 0; k < d_range.size(); k++) {
         d_rcs.push_back(rcs_mean);
     }
 
@@ -227,7 +227,7 @@ void estimator_rcs_impl::handle_msg(pmt::pmt_t msg)
     d_rcs_pack = pmt::list2(d_rcs_key, d_rcs_value); // make list for velocity information
 
     d_value = pmt::list1(d_rcs_pack);
-    for (int k = 0; k < d_msg_hold.size(); k++) {
+    for (size_t k = 0; k < d_msg_hold.size(); k++) {
         d_value = pmt::list_add(d_value, d_msg_hold[k]);
     }
 
