@@ -120,6 +120,7 @@ usrp_echotimer_cc_impl::usrp_echotimer_cc_impl(int samp_rate,
     //***** Setup USRP TX *****//
 
     d_args_tx = args_tx;
+    d_channel_tx = channel_tx;
     d_wire_tx = wire_tx;
     d_clock_source_tx = clock_source_tx;
     d_time_source_tx = time_source_tx;
@@ -145,10 +146,10 @@ usrp_echotimer_cc_impl::usrp_echotimer_cc_impl(int samp_rate,
     // Setup USRP TX: tune request
     d_tune_request_tx =
         uhd::tune_request_t(d_center_freq); // FIXME: add alternative tune requests
-    d_usrp_tx->set_tx_freq(d_tune_request_tx);
+    d_usrp_tx->set_tx_freq(d_tune_request_tx, d_channel_tx);
 
     // Setup USRP TX: antenna
-    d_usrp_tx->set_tx_antenna(d_antenna_tx);
+    d_usrp_tx->set_tx_antenna(d_antenna_tx, d_channel_tx);
 
     // Setup USRP TX: clock source
     d_usrp_tx->set_clock_source(d_clock_source_tx); // Set TX clock, TX is master
@@ -172,6 +173,7 @@ usrp_echotimer_cc_impl::usrp_echotimer_cc_impl(int samp_rate,
     //***** Setup USRP RX *****//
 
     d_args_rx = args_rx;
+    d_channel_rx = channel_rx;
     d_wire_rx = wire_rx;
     d_clock_source_rx = clock_source_rx;
     d_time_source_rx = time_source_rx;
@@ -197,10 +199,10 @@ usrp_echotimer_cc_impl::usrp_echotimer_cc_impl(int samp_rate,
     // Setup USRP RX: tune request
     d_tune_request_rx = uhd::tune_request_t(
         d_center_freq, d_lo_offset_rx); // FIXME: add alternative tune requests
-    d_usrp_rx->set_rx_freq(d_tune_request_rx);
+    d_usrp_rx->set_rx_freq(d_tune_request_rx, d_channel_rx);
 
     // Setup USRP RX: antenna
-    d_usrp_rx->set_rx_antenna(d_antenna_rx);
+    d_usrp_rx->set_rx_antenna(d_antenna_rx, d_channel_rx);
 
     // Setup USRP RX: clock source
     d_usrp_rx->set_clock_source(d_clock_source_rx); // RX is slave, clock is set on TX
@@ -245,9 +247,9 @@ void usrp_echotimer_cc_impl::set_num_delay_samps(int num_samps)
     d_num_delay_samps = num_samps;
 }
 
-void usrp_echotimer_cc_impl::set_rx_gain(float gain) { d_usrp_rx->set_rx_gain(gain); }
+void usrp_echotimer_cc_impl::set_rx_gain(float gain) { d_usrp_rx->set_rx_gain(gain, d_channel_rx); }
 
-void usrp_echotimer_cc_impl::set_tx_gain(float gain) { d_usrp_tx->set_tx_gain(gain); }
+void usrp_echotimer_cc_impl::set_tx_gain(float gain) { d_usrp_tx->set_tx_gain(gain, d_channel_tx); }
 
 void usrp_echotimer_cc_impl::send()
 {

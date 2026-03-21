@@ -89,6 +89,7 @@ public:
     float d_timeout_tx, d_timeout_rx;
     float d_wait_tx, d_wait_rx;
     float d_gain_tx, d_gain_rx;
+    int d_channel_tx, d_channel_rx;
 
     uhd::time_spec_t d_time_now_tx, d_time_now_rx;
 
