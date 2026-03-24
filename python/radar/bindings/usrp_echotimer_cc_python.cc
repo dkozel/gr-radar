@@ -14,7 +14,7 @@
 /* BINDTOOL_GEN_AUTOMATIC(0)                                                       */
 /* BINDTOOL_USE_PYGCCXML(0)                                                        */
 /* BINDTOOL_HEADER_FILE(usrp_echotimer_cc.h)                                        */
-/* BINDTOOL_HEADER_FILE_HASH(179281bf816eada79a1fa5f542238ece)                     */
+/* BINDTOOL_HEADER_FILE_HASH(55be217611b020b5f5d9e79e4a3f73ce)                     */
 /***********************************************************************************/
 
 #include <pybind11/complex.h>
@@ -55,15 +55,15 @@ void bind_usrp_echotimer_cc(py::module& m)
              py::arg("wait_tx"),
              py::arg("lo_offset_tx"),
              py::arg("args_rx"),
-             py::arg("channel_rx"),
+             py::arg("channels_rx"),
              py::arg("wire_rx"),
              py::arg("clock_source_rx"),
              py::arg("time_source_rx"),
-             py::arg("antenna_rx"),
-             py::arg("gain_rx"),
+             py::arg("antennas_rx"),
+             py::arg("gains_rx"),
              py::arg("timeout_rx"),
              py::arg("wait_rx"),
-             py::arg("lo_offset_rx"),
+             py::arg("lo_offsets_rx"),
              py::arg("len_key") = "packet_len",
              D(usrp_echotimer_cc, make))
 
@@ -77,6 +77,7 @@ void bind_usrp_echotimer_cc(py::module& m)
         .def("set_rx_gain",
              &usrp_echotimer_cc::set_rx_gain,
              py::arg("gain"),
+             py::arg("chan") = 0,
              D(usrp_echotimer_cc, set_rx_gain))
 
 

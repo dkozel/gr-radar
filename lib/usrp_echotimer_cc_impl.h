@@ -52,49 +52,69 @@ public:
                            float wait_tx,
                            float lo_offset_tx,
                            std::string args_rx,
-                           int channel_rx,
+                           const std::vector<int>& channels_rx,
                            std::string wire_rx,
                            std::string clock_source_rx,
                            std::string time_source_rx,
-                           std::string antenna_rx,
-                           float gain_rx,
+                           const std::vector<std::string>& antennas_rx,
+                           const std::vector<float>& gains_rx,
                            float timeout_rx,
                            float wait_rx,
-                           float lo_offset_rx,
+                           const std::vector<float>& lo_offsets_rx,
                            const std::string& len_key);
     ~usrp_echotimer_cc_impl();
     void send();
     void receive();
     void set_num_delay_samps(int num_samps);
-    void set_rx_gain(float gain);
+    void set_rx_gain(float gain, size_t chan = 0);
     void set_tx_gain(float gain);
 
     int d_samp_rate;
     float d_center_freq;
     int d_num_delay_samps;
-    std::vector<gr_complex> d_out_buffer;
 
-    std::string d_args_tx, d_args_rx;
-    std::string d_clock_source_tx, d_clock_source_rx;
-    std::string d_wire_tx, d_wire_rx;
-    std::string d_antenna_tx, d_antenna_rx;
-    std::string d_time_source_tx, d_time_source_rx;
+    // TX parameters
+    std::string d_args_tx;
+    std::string d_clock_source_tx;
+    std::string d_wire_tx;
+    std::string d_antenna_tx;
+    std::string d_time_source_tx;
+    double d_lo_offset_tx;
+    float d_timeout_tx;
+    float d_wait_tx;
+    float d_gain_tx;
+    int d_channel_tx;
+
+    // RX parameters - multi-channel
+    std::string d_args_rx;
+    std::string d_clock_source_rx;
+    std::string d_wire_rx;
+    std::string d_time_source_rx;
+    float d_timeout_rx;
+    float d_wait_rx;
+
+    // Per-channel RX settings
+    size_t d_num_rx_chans;
+    std::vector<size_t> d_channels_rx;
+    std::vector<std::string> d_antennas_rx;
+    std::vector<float> d_gains_rx;
+    std::vector<double> d_lo_offsets_rx;
+
+    // Multi-channel receive buffers
+    std::vector<std::vector<gr_complex>> d_out_buffers;
+    std::vector<void*> d_out_recv_ptrs;
+
+    // USRP objects
     uhd::usrp::multi_usrp::sptr d_usrp_tx, d_usrp_rx;
-    uhd::tune_request_t d_tune_request_tx, d_tune_request_rx;
+    uhd::tune_request_t d_tune_request_tx;
     uhd::tx_streamer::sptr d_tx_stream;
     uhd::rx_streamer::sptr d_rx_stream;
     uhd::tx_metadata_t d_metadata_tx;
     uhd::rx_metadata_t d_metadata_rx;
-    double d_lo_offset_tx, d_lo_offset_rx;
-    float d_timeout_tx, d_timeout_rx;
-    float d_wait_tx, d_wait_rx;
-    float d_gain_tx, d_gain_rx;
-    int d_channel_tx, d_channel_rx;
 
     uhd::time_spec_t d_time_now_tx, d_time_now_rx;
 
     gr::thread::thread d_thread_recv;
-    gr_complex* d_out_recv;
     int d_noutput_items_recv;
     pmt::pmt_t d_time_key, d_time_val, d_srcid;
 
